@@ -24,4 +24,4 @@ jobs:
         homeserver: 'matrix.org'
         token: ${{ secrets.MATRIX_TOKEN }}
         channel: '!zzRRnyCqBacUDwvyVW:utzutzutz.net'
-        message: 'This is an example message. It even supports the use of variables like ${{ github.sha }}'
+        message: 'TEST MESSAGE using fadenb/matrix-chat-message@${{ github.event.inputs.ref }}'
