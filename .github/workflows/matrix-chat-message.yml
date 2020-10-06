@@ -1,16 +1,25 @@
-name: Matrix-Chat-Message Test
+name: Matrix-Chat-Message Trigger
 on:
   workflow_dispatch:
-  push:
+    inputs:
+      ref:
+        description: 'Ref to trigger workflow from: `fadenb/matrix-chat-message@<THIS VALUE>`'
+        required: true
+
 
 jobs:
   send-message:
     runs-on: ubuntu-latest
     name: Send message via Matrix
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        repository: fadenb/matrix-chat-message
+        ref: ${{ github.event.inputs.ref }}
     - name: Send message to test channel
       id: matrix-chat-message
-      uses: fadenb/matrix-chat-message@master
+      uses: ./
       with:
         homeserver: 'matrix.org'
         token: ${{ secrets.MATRIX_TOKEN }}
